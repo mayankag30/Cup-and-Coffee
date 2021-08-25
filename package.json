@@ -6,7 +6,10 @@
   "author": "Mayank Agarwal",
   "scripts": {
     "dev": "nodemon server.js",
-    "serve": "node server.js"
+    "serve": "node server.js",
+    "development": "mix",
+    "watch": "npx mix watch",
+    "production": "mix --production"
   },
   "license": "MIT",
   "dependencies": {
@@ -15,6 +18,10 @@
     "express-ejs-layouts": "^2.5.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "laravel-mix": "^6.0.28",
+    "nodemon": "^2.0.12",
+    "resolve-url-loader": "4.0.0",
+    "sass": "^1.38.1",
+    "sass-loader": "12.1.0"
   }
 }
