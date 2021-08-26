@@ -18,6 +18,20 @@ Create Home Page using HTML and CSS
 Create Cart Page 
     -order summary section
     -empty cart section
+
+move routes to routes files
+Create dedicated controllers
+Add to Cart Functionality
+    -Fetch all the pizzas from db and show on home page
+    -Create menu model and put dummy data
+    - Connect to mongodb
+    - use connect-mongo for session store
+        -dependencies
+            -mongoose, express-session, connect-mongo, dotenv
+    -axios to send ajax request
+    -install notification library npm i noty
+
+
 Create Order Controller and Link it in server.js
 Creare Orders view with table for customer and admin
 Create Orders single page with status
