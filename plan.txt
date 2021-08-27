@@ -31,10 +31,15 @@ Add to Cart Functionality
     -axios to send ajax request
     -install notification library npm i noty
 
+Create login page with route
+Create register page with route
+Build register crud
+    -dependencies express-flash express-session dotenv
+    -status code article
+
+Build login using passport
+    -install dependencies passport passport-local express-session
 
 Create Order Controller and Link it in server.js
 Creare Orders view with table for customer and admin
 Create Orders single page with status
-Create login page with route
-Create register page with route
-Build register card
