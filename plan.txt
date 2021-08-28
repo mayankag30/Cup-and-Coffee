@@ -7,7 +7,7 @@ Create a NPM project and install all dependencies
     -dev dependencies
         -nodemon
     
-[+] Create Express server - Create a server.js file
+Create Express server - Create a server.js file
 Git Setup and first commit
 Install Laravel Mix
     -setup js and css
@@ -42,4 +42,16 @@ Build login using passport
 
 Create Order Controller and Link it in server.js
 Creare Orders view with table for customer and admin
+Place order Functionality
+Show all my orders on customer orders page
+Show orders on admin orders page
+
 Create Orders single page with status
+Order tracker 
+    - dependencies moment
+Socket Connection
+    -dependencies socket.io
+
+Build project for deployment
+
+Deploy project on live-server
