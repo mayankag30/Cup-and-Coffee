@@ -210,6 +210,12 @@ section.status {
   }
 }
 
+@media (min-width: 1536px) {
+  .container {
+    max-width: 90%;
+  }
+}
+
 @media (max-width: 768px) {
   .status-box ul li span:before {
     font-size: 34px;
