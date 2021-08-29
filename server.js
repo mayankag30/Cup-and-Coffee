@@ -10,6 +10,7 @@ const session = require("express-session");
 const flash = require("express-flash");
 const MongoDbStore = require("connect-mongo");
 const passport = require("passport");
+const Emitter = require("events");
 const PORT = process.env.PORT || 3000;
 
 // Database Connection
@@ -25,6 +26,11 @@ try {
 } catch (err) {
   console.log("Connection failed...");
 }
+
+// Event Emitter
+const eventEmitter = new Emitter();
+// to use in anywhere inside our application we bind it to our app
+app.set("eventEmitter", eventEmitter);
 
 // Session Config
 app.use(
@@ -72,6 +78,29 @@ app.set("view engine", "ejs");
 const initRoutes = require("./routes/web");
 initRoutes(app);
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
+});
+
+// Socket
+const io = require("socket.io")(server);
+io.on("connection", (socket) => {
+  // Join - socket.id is not the order id
+  // Recieve what was emitted from the client
+  socket.on("join", (orderId) => {
+    // Data is recieved which is sent from client
+    // Room is created
+    socket.join(orderId);
+  });
+});
+
+// Listening to event
+eventEmitter.on("orderUpdated", (data) => {
+  // data recieved from statusController
+  // to(roomName)
+  io.to(`order_${data.id}`).emit("orderUpdated", data);
+});
+
+eventEmitter.on("orderPlaced", (data) => {
+  io.to("adminRoom").emit("orderPlaced", data);
 });
