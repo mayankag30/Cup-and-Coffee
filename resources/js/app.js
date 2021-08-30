@@ -2,6 +2,7 @@ import axios from "axios";
 import Noty from "noty";
 import moment from "moment";
 import { initAdmin } from "./admin";
+import { initStripe } from "./stripe";
 
 const addToCart = document.querySelectorAll(".add-to-cart");
 const cartCounter = document.querySelector("#cartCounter");
@@ -75,6 +76,9 @@ function updateStatus(order) {
 }
 
 updateStatus(order);
+
+// Related to Payment Form and Stripe
+initStripe();
 
 // Socket - Client side
 let socket = io();

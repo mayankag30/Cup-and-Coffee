@@ -1,14 +1,17 @@
 const Order = require("../../../models/orderModel");
 const moment = require("moment");
+// Pass the private key
+const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
 
 function orderController() {
   return {
     store(req, res) {
-      const { phone, address } = req.body;
+      const { phone, address, stripeToken, paymentType } = req.body;
       // Validate Request
       if (!phone || !address) {
-        req.flash("error", "All fields are required");
-        return res.redirect("/cart");
+        return res.status(422).json({ message: "All fields are required" });
+        // req.flash("error", "All fields are required");
+        // return res.redirect("/cart");
       }
 
       // Create Order and store in database
@@ -24,21 +27,70 @@ function orderController() {
       order
         .save()
         .then((result) => {
+          // Populate the order: to get the customer details in the order
           Order.populate(result, { path: "customerId" }, (err, placedOrder) => {
-            req.flash("success", "Order Placed Successfully!");
-            // Empty the cart, we use delete keyword to delete any property of an object
-            delete req.session.cart;
+            // req.flash("success", "Order Placed Successfully!");
 
-            // Emit when the order is placed
-            const eventEmitter = req.app.get("eventEmitter");
-            eventEmitter.emit("orderPlaced", placedOrder);
-
-            return res.redirect("/customer/orders");
+            // Stripe Payment
+            if (paymentType === "card") {
+              stripe.charges
+                .create({
+                  // This amount is in paise in stripe, so convert Rs. to Paisa
+                  amount: req.session.cart.totalPrice * 100,
+                  // source will be the token
+                  source: stripeToken,
+                  // currency - Rs. - INR
+                  currency: "inr",
+                  // Description - for us to check in stripe dashboard
+                  description: `Pizza order: ${placedOrder._id}`,
+                })
+                .then(() => {
+                  // Payment Successfull
+                  placedOrder.paymentStatus = true;
+                  placedOrder.paymentType = paymentType;
+                  placedOrder
+                    .save()
+                    .then((ord) => {
+                      // Emit when the order is placed
+                      const eventEmitter = req.app.get("eventEmitter");
+                      eventEmitter.emit("orderPlaced", ord);
+                      // Empty the cart, we use delete keyword to delete any property of an object
+                      delete req.session.cart;
+                      return res.json({
+                        message:
+                          "Payment Successful, Order Placed Successfully",
+                      });
+                    })
+                    .catch((e) => {
+                      console.log(e);
+                    });
+                })
+                .catch((err) => {
+                  // Empty the cart, we use delete keyword to delete any property of an object
+                  delete req.session.cart;
+                  // Payment Fail
+                  return res.json({
+                    message:
+                      "Order Placed but Payment Failed, You can pay at delivery time",
+                  });
+                });
+            } else {
+              // Empty the cart, we use delete keyword to delete any property of an object
+              delete req.session.cart;
+              // payment - COD
+              return res.json({
+                message: "Order Placed Successfully, Payment - COD",
+              });
+            }
+            // return res.redirect("/customer/orders");
           });
         })
         .catch((err) => {
-          req.flash("error", "Something Went Wrong!");
-          return res.redirect("/cart");
+          // req.flash("error", "Something Went Wrong!");
+          // return res.redirect("/cart");
+          return res.status(500).json({
+            message: "Something Went Wrong",
+          });
         });
     },
     async index(req, res) {
