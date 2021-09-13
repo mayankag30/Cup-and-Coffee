@@ -30,6 +30,24 @@ function cartController() {
         totalQty: req.session.cart.totalQty,
       });
     },
+    delElement(req, res) {
+      const cart = req.session.cart;
+      // check if the item does not exist in cart
+      if (cart.items[req.body._id]) {
+        cart.items[req.body._id].qty -= 1;
+        cart.totalQty -= 1;
+        cart.totalPrice -= req.body.price;
+      }
+      if (cart.items[req.body._id].qty === 0) {
+        delete cart.items[req.body._id];
+      }
+      if (cart.totalQty === 0) {
+        delete req.session.cart;
+      }
+      return res.json({
+        totalQty: req.session.cart ? req.session.cart.totalQty : 0,
+      });
+    },
   };
 }
 
