@@ -30,7 +30,7 @@ section.hero {
   background: $secondary;
 }
 
-.add-to-cart {
+.add-to-cart-btn {
   border: 2px solid $primary;
   color: $primary;
   transition: $smooth;
@@ -249,4 +249,31 @@ section.status {
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+
+#journal-scroll::-webkit-scrollbar {
+  width: 6px;
+  cursor: pointer;
+}
+
+#journal-scroll::-webkit-scrollbar-track {
+  cursor: pointer;
+}
+
+#journal-scroll::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  background-color: #a0aec0;
+}
+
+.msgInput {
+  font-size: 11px;
+  width: 250px;
+}
+
+.journal_span {
+  font-size: 10px;
+}
+
+.journal_span_2 {
+  font-size: 8px;
 }

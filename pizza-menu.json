@@ -1,65 +1,182 @@
-[{
-  "_id": {
-    "$oid": "5eee651f739f8c674fd736ee"
+[
+  {
+    "_id": {
+      "$oid": "5eee651f739f8c674fd736ee"
+    },
+    "name": "Margherita",
+    "image": "pizza.png",
+    "price": "250",
+    "size": "small"
   },
-  "name": "Margherita",
-  "image": "pizza.png",
-  "price": "250",
-  "size": "small"
-},{
-  "_id": {
-    "$oid": "5eee6671a27a66807cf2bea3"
+  {
+    "_id": {
+      "$oid": "5eee6671a27a66807cf2bea3"
+    },
+    "name": "Marinara",
+    "image": "pizza.png",
+    "price": "300",
+    "size": "medium"
   },
-  "name": "Marinara",
-  "image": "pizza.png",
-  "price": "300",
-  "size": "medium"
-},{
-  "_id": {
-    "$oid": "5eee6692a27a66807cf2bea4"
+  {
+    "_id": {
+      "$oid": "5eee6692a27a66807cf2bea4"
+    },
+    "name": "Carbonara",
+    "image": "pizza.png",
+    "price": "200",
+    "size": "small"
   },
-  "name": "Carbonara",
-  "image": "pizza.png",
-  "price": "200",
-  "size": "small"
-},{
-  "_id": {
-    "$oid": "5eee66a5a27a66807cf2bea5"
+  {
+    "_id": {
+      "$oid": "5eee66a5a27a66807cf2bea5"
+    },
+    "name": "Americana",
+    "image": "pizza.png",
+    "price": "500",
+    "size": "large"
   },
-  "name": "Americana",
-  "image": "pizza.png",
-  "price": "500",
-  "size": "large"
-},{
-  "_id": {
-    "$oid": "5eee66c4a27a66807cf2bea6"
+  {
+    "_id": {
+      "$oid": "5eee66c4a27a66807cf2bea6"
+    },
+    "name": "Chicken Mushroom",
+    "image": "pizza.png",
+    "price": "350",
+    "size": "medium"
   },
-  "name": "Chicken Mushroom",
-  "image": "pizza.png",
-  "price": "350",
-  "size": "medium"
-},{
-  "_id": {
-    "$oid": "5eee66cfa27a66807cf2bea7"
+  {
+    "_id": {
+      "$oid": "5eee66cfa27a66807cf2bea7"
+    },
+    "name": "Paneer pizza",
+    "image": "pizza.png",
+    "price": "200",
+    "size": "small"
   },
-  "name": "Paneer pizza",
-  "image": "pizza.png",
-  "price": "200",
-  "size": "small"
-},{
-  "_id": {
-    "$oid": "5eee66eea27a66807cf2bea8"
+  {
+    "_id": {
+      "$oid": "5eee66eea27a66807cf2bea8"
+    },
+    "name": "Vegies pizza",
+    "image": "pizza.png",
+    "price": "600",
+    "size": "large"
   },
-  "name": "Vegies pizza",
-  "image": "pizza.png",
-  "price": "600",
-  "size": "large"
-},{
-  "_id": {
-    "$oid": "5eee6717a27a66807cf2bea9"
+  {
+    "_id": {
+      "$oid": "5eee6717a27a66807cf2bea9"
+    },
+    "name": "Pepperoni",
+    "image": "pizza.png",
+    "price": "500",
+    "size": "medium"
   },
-  "name": "Pepperoni",
-  "image": "pizza.png",
-  "price": "500",
-  "size": "medium"
-}]
+  {
+    "_id": {
+      "$oid": "5eee6717a27a66807cf2beb1"
+    },
+    "name": "Burger",
+    "image": "burgerSmall.jpg",
+    "price": "250",
+    "size": "small"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6717a27a66807cf2beb2"
+    },
+    "name": "Burger with Chutni",
+    "image": "burgerChutni.jfif",
+    "price": "300",
+    "size": "small"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6717a27a66807cf2beb3"
+    },
+    "name": "Burger and Fries",
+    "image": "burgerMed.jpg",
+    "price": "350",
+    "size": "medium"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6717a27a66807cf2beb4"
+    },
+    "name": "Burger Maharaja",
+    "image": "burgerLarge.jpg",
+    "price": "600",
+    "size": "large"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6717a27a66807cf2beb5"
+    },
+    "name": "Coffee",
+    "image": "coffee.jpg",
+    "price": "100",
+    "size": "medium"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6717a27a66807cf2beb6"
+    },
+    "name": "Capacino",
+    "image": "capacino.jpg",
+    "price": "120",
+    "size": "medium"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6717a27a66807cf2beb7"
+    },
+    "name": "Caramel Coffee",
+    "image": "caramelCoffee.png",
+    "price": "200",
+    "size": "large"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6717a27a66807cf2beb8"
+    },
+    "name": "Coca Cola",
+    "image": "coca.jpg",
+    "price": "80",
+    "size": "medium"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6717a27a66807cf2beb9"
+    },
+    "name": "Sprite",
+    "image": "sprite.jpg",
+    "price": "80",
+    "size": "medium"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6717a27a66807cf2bec0"
+    },
+    "name": "Limca",
+    "image": "limca.jpeg",
+    "price": "80",
+    "size": "medium"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6717a27a66807cf2bec1"
+    },
+    "name": "Mirinda",
+    "image": "mirinda.jpeg",
+    "price": "80",
+    "size": "medium"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6717a27a66807cf2bec2"
+    },
+    "name": "Slice",
+    "image": "slice.jpg",
+    "price": "80",
+    "size": "medium"
+  }
+]

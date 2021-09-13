@@ -20,6 +20,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
@@ -29,7 +33,7 @@
     <nav class="container mx-auto flex items-center justify-between py-4">
       <div>
         <a href="/">
-          <img src="/img/logo.png" alt="Logo" />
+          <img src="/img/logos.jpg" alt="Logo" />
         </a>
       </div>
       <div>
@@ -80,6 +84,23 @@
     <%- body %>
 
     <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" id="zsiqchat">
+      var $zoho = $zoho || {};
+      $zoho.salesiq = $zoho.salesiq || {
+        widgetcode:
+          "44fcc086bb5ff74f652e38eaed930e83a5c365a21b31d82870355442eeb5da09eb4f8f11a2d7aac0d022dfbc7753aa6a",
+        values: {},
+        ready: function () {},
+      };
+      var d = document;
+      s = d.createElement("script");
+      s.type = "text/javascript";
+      s.id = "zsiqscript";
+      s.defer = true;
+      s.src = "https://salesiq.zoho.in/widget";
+      t = d.getElementsByTagName("script")[0];
+      t.parentNode.insertBefore(s, t);
+    </script>
     <script src="/js/app.js"></script>
   </body>
 </html>

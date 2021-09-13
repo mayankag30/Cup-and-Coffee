@@ -6,6 +6,10 @@ import { initStripe } from "./stripe";
 
 const addToCart = document.querySelectorAll(".add-to-cart");
 const cartCounter = document.querySelector("#cartCounter");
+const updateCartAdd = document.querySelectorAll(".update-to-cart-add");
+const updateCartDel = document.querySelectorAll(".update-to-cart-del");
+const submitMsgButton = document.querySelector(".submitMsg");
+const msgInput = document.querySelector(".msgInput");
 
 function updateCart(pizza) {
   // Send request to the server and add the pizza to the cart
@@ -30,11 +34,58 @@ function updateCart(pizza) {
     });
 }
 
+function deleteCartElement(pizza) {
+  // Send request to the server and add the pizza to the cart
+  axios
+    .post("/delete-element", pizza)
+    .then((res) => {
+      if (res.data) {
+        cartCounter.innerText = res.data.totalQty;
+      }
+      new Noty({
+        type: "success",
+        timeout: 1000,
+        text: "Item removed to cart.",
+        progressBar: false,
+      }).show();
+    })
+    .catch((err) => {
+      new Noty({
+        type: "error",
+        timeout: 1000,
+        text: "Something went wrong",
+        progressBar: false,
+      }).show();
+    });
+}
+
 addToCart.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     // Add pizza element on the session inside CART
     const pizza = JSON.parse(btn.dataset.pizza);
     updateCart(pizza);
+  });
+});
+
+updateCartAdd.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    // Update element on the session inside CART
+    const pizza = JSON.parse(btn.dataset.pizza);
+    updateCart(pizza);
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
+  });
+});
+
+updateCartDel.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    // Delete element on the session inside CART
+    const pizza = JSON.parse(btn.dataset.pizza);
+    deleteCartElement(pizza);
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
   });
 });
 
@@ -108,4 +159,35 @@ socket.on("orderUpdated", (data) => {
     text: "Order updated",
     progressBar: false,
   }).show();
+});
+
+function sendbtn() {
+  var printtext = document.getElementById("chatmsg");
+  var copytext = document.getElementById("typemsg");
+  var currentdate = new Date();
+
+  var copiedtext = copytext.value;
+
+  var printnow =
+    '<div class="flex justify-end pt-2 pl-10">' +
+    '<span class="bg-green-900 h-auto text-gray-200 text-xs font-normal rounded-sm px-1 items-end flex justify-end overflow-hidden " style="font-size: 10px;">' +
+    copiedtext +
+    '<span class="text-gray-400 pl-1" style="font-size: 8px;">' +
+    currentdate.getHours() +
+    ":" +
+    currentdate.getMinutes() +
+    "</span>" +
+    "</span>" +
+    "</div>";
+
+  printtext.insertAdjacentHTML("beforeend", printnow);
+  msgInput.value = "";
+
+  var box = document.getElementById("journal-scroll");
+  box.scrollTop = box.scrollHeight;
+}
+
+submitMsgButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  sendbtn();
 });
