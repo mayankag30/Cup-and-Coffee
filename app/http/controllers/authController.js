@@ -1,6 +1,8 @@
 const User = require("../../models/userModel");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
+const passwordValidator = require("password-validator");
+const schema = new passwordValidator();
 
 function authController() {
   const _getRedirectUrl = (req) => {
@@ -49,10 +51,21 @@ function authController() {
     async postRegister(req, res) {
       const { name, email, password } = req.body;
       // console.log(req.body);
+      schema.is().min(8).is().max(100).has().uppercase(1).has().lowercase(1);
       // Validate request
       if (!name || !email || !password) {
         // flash{error = key, message}
         req.flash("error", "All fields are required");
+        req.flash("name", name);
+        req.flash("email", email);
+        return res.redirect("/register");
+      }
+
+      if (!schema.validate(password)) {
+        req.flash(
+          "error",
+          "Password should have atleast one uppercase and one lowercase letter and minimum of 8 characters"
+        );
         req.flash("name", name);
         req.flash("email", email);
         return res.redirect("/register");
